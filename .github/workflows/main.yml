@@ -1,0 +1,49 @@
+name: Deploy to Configured Media and Neocities
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-to-configured-media-and-neocities
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Remove Old Configured Media Folder Contents
+      run: |
+        rm -rf configured.media/*
+
+    - name: Copy Content Folder to Configured Media Folder
+      run: |
+        mkdir -p configured.media/content
+        cp -r content/* configured.media/content/
+
+    - name: Copy Index.html to Configured Media Folder
+      run: |
+        cp index.html configured.media/
+
+    - name: Commit Changes to Configured Media
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git add configured.media/
+        git commit -m "Deploy content to configured.media folder"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Deploy to Neocities
+      uses: bcomnes/deploy-to-neocities@v1
+      with:
+        api_token: ${{ secrets.NEOCITIES_API_KEY }}
+        cleanup: true
+        dist_dir: configured.media
