@@ -1,4 +1,5 @@
 {
     "assets": "content/windows/assets.html",
-    "mobileError": "content/windows/mobileError.html"
+    "mobileError": "content/windows/mobileError.html",
+    "settingsWindow": "content/windows/settings-window.html"
 }
