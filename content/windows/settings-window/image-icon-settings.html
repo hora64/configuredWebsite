@@ -8,61 +8,70 @@
     </fieldset>
 </article>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const configPath = 'hora64/configuredWebsite/content/jsonLists/configOptions.json';
+    document.addEventListener('DOMContentLoaded', function () {
+        const configPath = 'hora64/configuredWebsite/content/jsonLists/configOptions.json';
 
-    // Fetch settings from JSON file
-    fetch(configPath)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Populate wallpaper options
-            const wallpaperSettings = document.getElementById('wallpaper-settings');
-            data.wallpapers.forEach((wallpaper, index) => {
-                const div = document.createElement('div');
-                div.className = 'field-row';
-                div.innerHTML = `
+        console.log('Loading configuration from:', configPath); // Log the file path
+
+        // Fetch settings from JSON file
+        fetch(configPath)
+            .then(response => {
+                console.log('Response status:', response.status); // Log HTTP response status
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Configuration data loaded:', data); // Log the JSON data
+
+                // Populate wallpaper options
+                const wallpaperSettings = document.getElementById('wallpaper-settings');
+                data.wallpapers.forEach((wallpaper, index) => {
+                    console.log(`Adding wallpaper option: ${wallpaper.label} (${wallpaper.value})`); // Log each wallpaper
+                    const div = document.createElement('div');
+                    div.className = 'field-row';
+                    div.innerHTML = `
                     <input id="wallpaperoption${index + 1}" type="radio" name="wallpaperselect" value="${wallpaper.value}" onclick="applyWallpaper(this.value)" ${index === 0 ? 'checked' : ''}>
                     <label for="wallpaperoption${index + 1}">${wallpaper.label}</label>
                 `;
-                wallpaperSettings.appendChild(div);
-            });
+                    wallpaperSettings.appendChild(div);
+                });
 
-            // Populate favicon options
-            const faviconSettings = document.getElementById('favicon-settings');
-            data.favicons.forEach((favicon, index) => {
-                const div = document.createElement('div');
-                div.className = 'field-row';
-                div.innerHTML = `
+                // Populate favicon options
+                const faviconSettings = document.getElementById('favicon-settings');
+                data.favicons.forEach((favicon, index) => {
+                    console.log(`Adding favicon option: ${favicon.label} (${favicon.value})`); // Log each favicon
+                    const div = document.createElement('div');
+                    div.className = 'field-row';
+                    div.innerHTML = `
                     <input id="faviconOption${index + 1}" type="radio" name="faviconSelect" value="${favicon.value}" onclick="applyFavicon(this.value)" ${index === 0 ? 'checked' : ''}>
                     <label for="faviconOption${index + 1}">
                         <img src="${favicon.icon}" alt="${favicon.label}">
                     </label>
                 `;
-                faviconSettings.appendChild(div);
-            });
+                    faviconSettings.appendChild(div);
+                });
 
-            // Load initial selections from localStorage
-            const savedWallpaper = loadFromLocalStorage('selectedWallpaper');
-            if (savedWallpaper) {
-                const radioInput = document.querySelector(`input[value="${savedWallpaper}"][name="wallpaperselect"]`);
-                if (radioInput) {
-                    radioInput.checked = true;
+                // Log saved selections
+                const savedWallpaper = loadFromLocalStorage('selectedWallpaper');
+                console.log('Saved wallpaper selection:', savedWallpaper);
+                if (savedWallpaper) {
+                    const radioInput = document.querySelector(`input[value="${savedWallpaper}"][name="wallpaperselect"]`);
+                    if (radioInput) {
+                        radioInput.checked = true;
+                    }
                 }
-            }
 
-            const savedFavicon = loadFromLocalStorage('selectedFavicon');
-            if (savedFavicon) {
-                const radioInput = document.querySelector(`input[value="${savedFavicon}"][name="faviconSelect"]`);
-                if (radioInput) {
-                    radioInput.checked = true;
+                const savedFavicon = loadFromLocalStorage('selectedFavicon');
+                console.log('Saved favicon selection:', savedFavicon);
+                if (savedFavicon) {
+                    const radioInput = document.querySelector(`input[value="${savedFavicon}"][name="faviconSelect"]`);
+                    if (radioInput) {
+                        radioInput.checked = true;
+                    }
                 }
-            }
-        })
-        .catch(error => console.error('Error loading configuration:', error));
-});
+            })
+            .catch(error => console.error('Error loading configuration:', error)); // Log errors
+    });
 </script>
