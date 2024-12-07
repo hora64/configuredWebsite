@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Load and apply color settings, wallpaper, favicon, and cursor
-    const savedColor = loadFromLocalStorage('colorSettings') || 'rgb(125, 125, 125)';
+    const savedColor = loadFromLocalStorage('colorSettings') || 'rgb(255, 0, 0)';
     applyColor(parseColor(savedColor), false);
 
     const savedWallpaper = loadFromLocalStorage('selectedWallpaper') || 'content/assets/images/wallpapers/frutigeraero.jpg';
