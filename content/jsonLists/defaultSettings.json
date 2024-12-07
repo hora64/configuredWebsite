@@ -1,0 +1,10 @@
+{
+    "windowColor": "rgb(255, 0, 0)",
+    "wallpaper" : "content/assets/images/wallpapers/frutigeraero.jpg",
+    "favicon": "content/assets/images/icons/ultcoFrutigerAeroBlue_px64.ico",
+    "cursor": "content/assets/images/cur/chrome/chrome.cur",
+    "startup": {
+        "sound": "content/assets/audio/7startup.mp3",
+        "volume": 0.2
+    }
+}

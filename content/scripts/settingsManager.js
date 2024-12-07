@@ -1,35 +1,43 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Load and apply color settings, wallpaper, favicon, and cursor
-    const savedColor = loadFromLocalStorage('colorSettings') || 'rgb(255, 0, 0)';
-    applyColor(parseColor(savedColor), false);
+    // Load defaults from JSON file
+    fetch('hora64/configuredWebsite/content/jsonLists/defaultSettings.json')
+        .then(response => response.json())
+        .then(defaultSettings => {
+            // Load and apply color settings, wallpaper, favicon, and cursor
+            const savedColor = loadFromLocalStorage('colorSettings') || defaultSettings.windowColor;
+            applyColor(parseColor(savedColor), false);
 
-    const savedWallpaper = loadFromLocalStorage('selectedWallpaper') || 'content/assets/images/wallpapers/frutigeraero.jpg';
-    applyWallpaper(savedWallpaper);
+            const savedWallpaper = loadFromLocalStorage('selectedWallpaper') || defaultSettings.wallpaper;
+            applyWallpaper(savedWallpaper);
 
-    const savedFavicon = loadFromLocalStorage('selectedFavicon') || 'content/assets/images/icons/ultcoFrutigerAeroBlue_px64.ico';
-    applyFavicon(savedFavicon);
+            const savedFavicon = loadFromLocalStorage('selectedFavicon') || defaultSettings.favicon;
+            applyFavicon(savedFavicon);
 
-    const savedCursor = loadFromLocalStorage('selectedCursor') || 'content/assets/images/cur/chrome/chrome.cur';
-    applyCursor(savedCursor);
+            const savedCursor = loadFromLocalStorage('selectedCursor') || defaultSettings.cursor;
+            applyCursor(savedCursor);
 
-    // Load and apply startup sound settings and volume
-    const savedStartupSound = loadFromLocalStorage('startupSound') || 'content/assets/audio/7startup.mp3';
-    applyStartupSound(savedStartupSound);
+            // Load and apply startup sound settings and volume
+            const savedStartupSound = loadFromLocalStorage('startupSound') || defaultSettings.startup.sound;
+            applyStartupSound(savedStartupSound);
 
-    const savedVolume = loadFromLocalStorage('startupSoundVolume') || 0.2;
-    applyStartupVolume(savedVolume, false);
+            const savedVolume = loadFromLocalStorage('startupSoundVolume') || defaultSettings.startup.volume;
+            applyStartupVolume(savedVolume, false);
 
-    // Play the startup sound immediately
-    playStartupSound();
+            // Play the startup sound immediately
+            playStartupSound();
 
-    // Set a delay before attempting to play the sound again
-    setTimeout(playStartupSound, 3000);
+            // Set a delay before attempting to play the sound again
+            setTimeout(playStartupSound, 3000);
+        })
+        .catch(error => console.error('Failed to load default settings:', error));
 });
 
+// Cooldown functions
 const colorCooldown = cooldown(100); // Set cooldown duration to 200ms
 const volumeCooldown = cooldown(200);
 
-function applyColor({red, green, blue}, useCooldown = true) {
+// Application functions
+function applyColor({ red, green, blue }, useCooldown = true) {
     if (!colorCooldown(useCooldown)) return;
     const rgbColor = `rgb(${red}, ${green}, ${blue})`;
     document.documentElement.style.setProperty('--title-color', rgbColor);
@@ -66,7 +74,9 @@ function applyStartupVolume(volume, useCooldown = true) {
 }
 
 function playStartupSound() {
-    document.getElementById('startup')?.play().then(() => console.log('Startup sound played successfully')).catch(error => console.error('Failed to play startup sound:', error));
+    document.getElementById('startup')?.play()
+        .then(() => console.log('Startup sound played successfully'))
+        .catch(error => console.error('Failed to play startup sound:', error));
 }
 
 function applySliderColor() {
@@ -87,4 +97,24 @@ function parseColor(rgbString) {
         };
     }
     return null;
+}
+
+// Utility functions
+function loadFromLocalStorage(key) {
+    return localStorage.getItem(key);
+}
+
+function saveToLocalStorage(key, value) {
+    localStorage.setItem(key, value);
+}
+
+function cooldown(duration) {
+    let lastExecution = 0;
+    return function (useCooldown) {
+        if (!useCooldown) return true;
+        const now = Date.now();
+        if (now - lastExecution < duration) return false;
+        lastExecution = now;
+        return true;
+    };
 }
