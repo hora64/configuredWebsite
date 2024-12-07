@@ -1,0 +1,16 @@
+{
+    "wallpapers": [
+      { "label": "Wallpaper #1", "value": "content/assets/images/wallpapers/frutigeraero.jpg" },
+      { "label": "Wallpaper #2", "value": "content/assets/images/wallpapers/Windows7Wallpaper.jpg" },
+      { "label": "Wallpaper #3", "value": "content/assets/images/wallpapers/frutigeraero2.jpg" }
+    ],
+    "favicons": [
+      { "label": "Favicon #1", "value": "content/assets/images/icons/ultcoFrutigerAeroRed_px64.ico", "icon": "content/assets/images/png/px16/ultcoFrutigerAeroRed_px16.png" },
+      { "label": "Favicon #2", "value": "content/assets/images/icons/ultcoFrutigerAeroLime_px64.ico", "icon": "content/assets/images/png/px16/ultcoFrutigerAeroLime_px16.png" },
+      { "label": "Favicon #3", "value": "content/assets/images/icons/ultcoFrutigerAeroBlue_px64.ico", "icon": "content/assets/images/png/px16/ultcoFrutigerAeroBlue_px16.png" },
+      { "label": "Favicon #4", "value": "content/assets/images/icons/ultcoFrutigerAeroPink_px64.ico", "icon": "content/assets/images/png/px16/ultcoFrutigerAeroPink_px16.png" },
+      { "label": "Favicon #5", "value": "content/assets/images/icons/ultcoFrutigerAeroPurple_px64.ico", "icon": "content/assets/images/png/px16/ultcoFrutigerAeroPurple_px16.png" },
+      { "label": "Favicon #6", "value": "content/assets/images/icons/ultcoFrutigerAeroGrey_px64.ico", "icon": "content/assets/images/png/px16/ultcoFrutigerAeroGrey_px16.png" }
+    ]
+  }
+  

@@ -9,13 +9,11 @@
 </article>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const configPath = 'content/jsonLists/configOptions.json';
-
     // Async function to fetch and append configuration data
     async function loadConfigAndAppend() {
         try {
-            console.log('Fetching configuration from:', configPath);
-            const response = await fetch(configPath);
+            console.log('Fetching configuration from:', 'content/jsonLists/configOptions.json');
+            const response = await fetch('content/jsonLists/configOptions.json');
 
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
