@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Load defaults from JSON file
-    fetch('hora64/configuredWebsite/content/jsonLists/defaultSettings.json')
+    fetch('content/jsonLists/defaultSettings.json')
         .then(response => response.json())
         .then(defaultSettings => {
             // Load and apply color settings, wallpaper, favicon, and cursor
