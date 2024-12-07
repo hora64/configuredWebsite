@@ -1,64 +1,8 @@
 [
-      {
-        "url": "content/assets/audio/music/originsssGolden.mp3",
-        "defaultName": "origins",
-        "artist": "goldenn.wav",
-        "title": "origins"
-    },
     {
-        "url": "content/assets/audio/music/tellinglies.mp3",
-        "defaultName": "telling lies (beat)",
-        "artist": "confrcted/bobbykyho",
-        "title": "telling lies (beat)"
-    },
-    {
-        "url": "content/assets/audio/music/aquafina.mp3",
-        "defaultName": "aquafina",
-        "artist": "riv3rr",
-        "title": "aquafina"
-    },
-    {
-        "url": "content/assets/audio/music/Cuck Boy.mp3",
-        "defaultName": "Cuck Boy",
-        "artist": "kts.von",
-        "title": "cuck boy"
-    },
-    {
-        "url": "content/assets/audio/music/Mystic DA Kid.mp3",
-        "defaultName": "btc coded configured",
-        "artist": "Mystic DA Kid",
-        "title": "btc coded configured"
-    },
-    {
-        "url": "content/assets/audio/music/Fuck that fat nigga - ktsvon.mp3",
-        "defaultName": "ftfn",
-        "artist": "kts.von",
-        "title": "ftfn"
-    },
-    {
-        "url": "content/assets/audio/music/configured beat osuda x numb 163bpm.mp3",
-        "defaultName": "configured beat",
-        "artist": "osuda x numb",
-        "title": "configured beat"
-    },
-    {
-        "url": "content/assets/audio/music/conradio fm (mdk) (170bpm) (A flat major) - Mystic DA Kid(1).mp3",
-        "defaultName": "conradio fm",
-        "artist": "Mystic DA Kid",
-        "title": "conradio fm"
-    },
-    {
-        "url": "content/assets/audio/music/middle part.mp3",
-        "defaultName": "goldenn.wav",
-        "artist": "osuda x numb",
-        "title": "middle part"
-    },
-    {
-        "url": "content/assets/audio/music/options mix 1 sped.mp3",
-        "defaultName": "options mix 1",
-        "artist": "rlu @nosebluud",
-        "title": "options mix 1"
+        "url": "content/assets/audio/music/",
+        "defaultName": "example",
+        "artist": "artist",
+        "title": "example"
     }
-   
-
 ]
